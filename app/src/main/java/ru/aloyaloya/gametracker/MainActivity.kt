@@ -14,8 +14,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import ru.aloyaloya.gametracker.theme.GametrackerTheme
 
 class MainActivity : ComponentActivity() {
+
+    private lateinit var viewModel: MainActivityViewModel
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val appComponent = (application as GametrackerApplication).appComponent
+
+        viewModel = appComponent.viewModelFactory.create(MainActivityViewModel::class.java)
+
         enableEdgeToEdge()
         setContent {
             GametrackerTheme {
