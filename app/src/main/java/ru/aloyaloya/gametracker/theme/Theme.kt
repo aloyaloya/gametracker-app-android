@@ -1,6 +1,5 @@
-package com.example.gametracker.ui.theme
+package ru.aloyaloya.gametracker.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.gametracker"
+    namespace = "ru.aloyaloya.gametracker"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.gametracker"
+        applicationId = "ru.aloyaloya.gametracker"
         minSdk = 25
         targetSdk = 35
         versionCode = 1

@@ -1,4 +1,4 @@
-package com.example.gametracker.ui.theme
+package ru.aloyaloya.gametracker.theme
 
 import androidx.compose.ui.graphics.Color
 
