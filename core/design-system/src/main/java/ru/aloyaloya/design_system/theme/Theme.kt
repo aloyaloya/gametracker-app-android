@@ -19,7 +19,11 @@ private val LightColorScheme = lightColorScheme(
     surfaceContainerLow = Purple20,
     surface = Purple10,
     surfaceVariant = White70,
-    surfaceTint = PurpleGray40
+    surfaceTint = PurpleGray40,
+
+    primary = Pink70,
+    inversePrimary = Pink60,
+    onPrimary = White70
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
