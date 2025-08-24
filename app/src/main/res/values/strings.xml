@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">gametracker</string>
+
+    <string name="discover_screen_title">Каталог</string>
+    <string name="search_screen_title">Поиск</string>
+    <string name="collection_screen_title">Моя Коллекция</string>
+    <string name="settings_screen_title">Настройки</string>
 </resources>
