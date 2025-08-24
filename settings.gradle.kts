@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "gametracker"
 include(":app")
 include(":core:ui")
+include(":core:design-system")
