@@ -12,6 +12,20 @@ import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
+/**
+ * Applies a customizable drop shadow effect to the composable.
+ *
+ * This modifier draws a shadow behind the content with configurable color, blur, offset, and spread.
+ * It uses a software-based blur effect and supports any [Shape] for the shadow outline.
+ *
+ * @param shape The [Shape] of the shadow outline. Typically matches the content's shape.
+ * @param color The color of the shadow. Defaults to semi-transparent black.
+ * @param blur The blur radius of the shadow. Higher values create softer shadows.
+ * @param offsetX The horizontal offset of the shadow. Positive values move right.
+ * @param offsetY The vertical offset of the shadow. Positive values move down.
+ * @param spread The amount to expand the shadow beyond the content bounds.
+ * @return A [Modifier] with the applied shadow effect.
+ */
 fun Modifier.dropShadow(
     shape: Shape,
     color: Color = Color.Black.copy(0.5f),
@@ -21,28 +35,38 @@ fun Modifier.dropShadow(
     spread: Dp = 0.dp,
 ) = this.drawBehind {
 
-    val shadowSize = Size(size.width + spread.toPx(), size.height + spread.toPx())
-    val shadowOutline = shape.createOutline(shadowSize, layoutDirection, this)
-    val paint = Paint()
+    val spreadPx = spread.toPx()
+    val shadowSize = Size(
+        width = size.width + spreadPx * 2,
+        height = size.height + spreadPx * 2
+    )
 
-    paint.color = color
+    val shadowOutline = shape.createOutline(
+        size = shadowSize,
+        layoutDirection = layoutDirection,
+        density = this
+    )
 
-    // Check for valid blur radius
+    val paint = Paint().apply {
+        this.color = color
+        if (blur.toPx() > 0) {
+            asFrameworkPaint().maskFilter = BlurMaskFilter(
+                blur.toPx(),
+                BlurMaskFilter.Blur.NORMAL
+            )
+        }
+    }
+
     if (blur.toPx() > 0) {
         paint.asFrameworkPaint().apply {
-            // Apply blur to the Paint
             maskFilter = BlurMaskFilter(blur.toPx(), BlurMaskFilter.Blur.NORMAL)
         }
     }
 
     drawIntoCanvas { canvas ->
-        // Save the canvas state
         canvas.save()
-        // Translate to specified offsets
         canvas.translate(offsetX.toPx(), offsetY.toPx())
-        // Draw the shadow
         canvas.drawOutline(shadowOutline, paint)
-        // Restore the canvas state
         canvas.restore()
     }
 }
