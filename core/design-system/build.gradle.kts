@@ -1,22 +1,18 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.kotlin.ksp)
 }
 
 android {
-    namespace = "ru.aloyaloya.gametracker"
+    namespace = "ru.aloyaloya.design_system"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "ru.aloyaloya.gametracker"
         minSdk = 25
-        targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -41,14 +37,12 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:design-system"))
-    implementation(project(":core:ui"))
+    
+    implementation(project(":core:domain"))
 
-    implementation(libs.dagger)
-    ksp(libs.dagger.compiler)
+    implementation(libs.coil.compose)
 
     implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.ui)
@@ -57,13 +51,10 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(platform(libs.androidx.compose.bom))
 
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
     testImplementation(libs.junit)
-
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
 }

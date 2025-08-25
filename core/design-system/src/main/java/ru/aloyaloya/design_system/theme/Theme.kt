@@ -1,4 +1,4 @@
-package ru.aloyaloya.gametracker.theme
+package ru.aloyaloya.design_system.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -11,15 +11,24 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+    surfaceContainer = Purple30,
+    surfaceContainerHigh = Purple40,
+    surfaceContainerLow = Purple20,
+    surface = Purple10,
+    surfaceVariant = White70,
+    surfaceBright = White20,
+    surfaceTint = PurpleGray40,
+
+    primary = Pink70,
+    onPrimaryContainer = Pink30,
+    inversePrimary = Pink60,
+    onPrimary = White70,
+
+    tertiary = Yellow50,
+    onTertiary = Purple10
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
