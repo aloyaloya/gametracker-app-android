@@ -31,12 +31,14 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
-    buildFeatures{
+    buildFeatures {
         compose = true
     }
 }
 
 dependencies {
+
+    implementation(libs.coil.compose)
 
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.lifecycle.runtime.ktx)
