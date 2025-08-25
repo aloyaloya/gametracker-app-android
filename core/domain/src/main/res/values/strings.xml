@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="status_completed">Пройдено</string>
+    <string name="status_playing">Прохожу</string>
+    <string name="status_backlog">Бэклог</string>
+    <string name="status_wishlist">Хочу пройти</string>
+</resources>
