@@ -4,12 +4,9 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import ru.aloyaloya.collection.presentation.navigation.CollectionRoute
 import ru.aloyaloya.discover.presentation.navigation.DiscoverRoute
-import ru.aloyaloya.gametracker.R
 import ru.aloyaloya.search.presentation.navigation.SearchRoute
 import ru.aloyaloya.settings.presentation.navigation.SettingsRoute
 import kotlin.reflect.KClass
-
-// TODO: Move all route resources to feature modules
 
 /**
  * Enumeration representing the top-level navigation destinations in the Gametracker application.
@@ -29,23 +26,23 @@ enum class TopLevelDestination(
     val baseRoute: KClass<*> = route,
 ) {
     DISCOVER(
-        iconResId = R.drawable.ic_discover_filled,
-        labelResId = R.string.discover_screen_title,
+        iconResId = ru.aloyaloya.discover.R.drawable.ic_discover_filled,
+        labelResId = ru.aloyaloya.discover.R.string.discover_screen_title,
         route = DiscoverRoute::class,
     ),
     SEARCH(
-        iconResId = R.drawable.ic_search_filled,
-        labelResId = R.string.search_screen_title,
+        iconResId = ru.aloyaloya.search.R.drawable.ic_search_filled,
+        labelResId = ru.aloyaloya.search.R.string.search_screen_title,
         route = SearchRoute::class
     ),
     COLLECTION(
-        iconResId = R.drawable.ic_collection_filled,
-        labelResId = R.string.collection_screen_title,
+        iconResId = ru.aloyaloya.collection.R.drawable.ic_collection_filled,
+        labelResId = ru.aloyaloya.collection.R.string.collection_screen_title,
         route = CollectionRoute::class
     ),
     SETTINGS(
-        iconResId = R.drawable.ic_settings_filled,
-        labelResId = R.string.settings_screen_title,
+        iconResId = ru.aloyaloya.settings.R.drawable.ic_settings_filled,
+        labelResId = ru.aloyaloya.settings.R.string.settings_screen_title,
         route = SettingsRoute::class
     ),
 }
