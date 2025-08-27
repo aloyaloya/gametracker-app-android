@@ -1,4 +1,4 @@
-package ru.aloyaloya.gametracker.di
+package ru.aloyaloya.ui.di
 
 import kotlin.reflect.KClass
 

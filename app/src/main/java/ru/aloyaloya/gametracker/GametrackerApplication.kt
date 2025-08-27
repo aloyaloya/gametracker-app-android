@@ -2,8 +2,8 @@ package ru.aloyaloya.gametracker
 
 import android.app.Application
 import ru.aloyaloya.gametracker.di.AppComponent
-import ru.aloyaloya.gametracker.di.ComponentProvider
 import ru.aloyaloya.gametracker.di.DaggerAppComponent
+import ru.aloyaloya.ui.di.ComponentProvider
 import kotlin.reflect.KClass
 
 class GametrackerApplication : ComponentProvider, Application() {
