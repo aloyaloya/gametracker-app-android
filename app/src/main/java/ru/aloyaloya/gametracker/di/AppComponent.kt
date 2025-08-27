@@ -4,7 +4,11 @@ import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import dagger.BindsInstance
 import dagger.Component
+import ru.aloyaloya.collection.di.CollectionComponent
+import ru.aloyaloya.discover.di.DiscoverComponent
 import ru.aloyaloya.gametracker.GametrackerApplication
+import ru.aloyaloya.search.di.SearchComponent
+import ru.aloyaloya.settings.di.SettingsComponent
 import javax.inject.Singleton
 
 /**
@@ -58,4 +62,12 @@ interface AppComponent {
      * @return A factory capable of creating ViewModels with injected dependencies.
      */
     val viewModelFactory: ViewModelProvider.Factory
+
+    val discoverComponentFactory: DiscoverComponent.Factory
+
+    val searchComponentFactory: SearchComponent.Factory
+
+    val collectionComponentFactory: CollectionComponent.Factory
+
+    val settingsComponentFactory: SettingsComponent.Factory
 }

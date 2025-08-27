@@ -5,7 +5,11 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
+import ru.aloyaloya.collection.di.CollectionComponent
+import ru.aloyaloya.discover.di.DiscoverComponent
 import ru.aloyaloya.gametracker.MainActivityViewModel
+import ru.aloyaloya.search.di.SearchComponent
+import ru.aloyaloya.settings.di.SettingsComponent
 import ru.aloyaloya.ui.di.DaggerVMFactory
 import ru.aloyaloya.ui.di.ViewModelKey
 
@@ -22,7 +26,12 @@ import ru.aloyaloya.ui.di.ViewModelKey
  */
 @Module(
     includes = [],
-    subcomponents = []
+    subcomponents = [
+        DiscoverComponent::class,
+        SearchComponent::class,
+        CollectionComponent::class,
+        SettingsComponent::class
+    ]
 )
 interface AppModule {
 
