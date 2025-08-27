@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.ksp)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -41,6 +42,11 @@ android {
 }
 
 dependencies {
+
+    implementation(project(":feature:discover"))
+    implementation(project(":feature:collection"))
+    implementation(project(":feature:search"))
+    implementation(project(":feature:settings"))
     implementation(project(":core:design-system"))
     implementation(project(":core:ui"))
 
