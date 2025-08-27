@@ -1,6 +1,5 @@
 package ru.aloyaloya.gametracker.ui
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.util.trace
@@ -9,7 +8,12 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
+import ru.aloyaloya.collection.presentation.navigation.navigateToCollection
+import ru.aloyaloya.discover.presentation.navigation.navigateToDiscover
+import ru.aloyaloya.gametracker.navigation.GametrackerNavHost
 import ru.aloyaloya.gametracker.navigation.TopLevelDestination
+import ru.aloyaloya.search.presentation.navigation.navigateToSearch
+import ru.aloyaloya.settings.presentation.navigation.navigateToSettings
 
 /**
  * Main application composable that sets up the navigation
@@ -23,21 +27,20 @@ import ru.aloyaloya.gametracker.navigation.TopLevelDestination
  * [currentBackStackEntryAsState] to observe the current navigation destination.
  */
 @Composable
-fun GametrackerApp() {
-
+internal fun GametrackerApp() {
     val navController = rememberNavController()
-
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
 
     GametrackerScaffold(
         currentDestination = currentDestination,
         destinations = TopLevelDestination.entries,
-        onNavigate = {} // navigateToTopLevelDestination(navController, it)
+        onNavigate = { navigateToTopLevelDestination(navController, it) }
     ) {
-        Text("fff")
+        GametrackerNavHost(navController = navController)
     }
 }
+
 
 private fun navigateToTopLevelDestination(
     navController: NavController,
@@ -63,11 +66,10 @@ private fun navigateToTopLevelDestination(
         }
 
         when (topLevelDestination) {
-//            TopLevelDestination.DISCOVER -> navController.navigateToDiscover(topLevelNavOptions)
-            TopLevelDestination.DISCOVER -> {}
-            TopLevelDestination.SEARCH -> {}
-            TopLevelDestination.COLLECTION -> {}
-            TopLevelDestination.SETTINGS -> {}
+            TopLevelDestination.DISCOVER -> navController.navigateToDiscover(topLevelNavOptions)
+            TopLevelDestination.SEARCH -> navController.navigateToSearch(topLevelNavOptions)
+            TopLevelDestination.COLLECTION -> navController.navigateToCollection(topLevelNavOptions)
+            TopLevelDestination.SETTINGS -> navController.navigateToSettings(topLevelNavOptions)
         }
     }
 }

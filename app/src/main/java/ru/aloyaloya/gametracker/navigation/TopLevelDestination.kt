@@ -2,11 +2,14 @@ package ru.aloyaloya.gametracker.navigation
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import kotlinx.serialization.Serializable
+import ru.aloyaloya.collection.presentation.navigation.CollectionRoute
+import ru.aloyaloya.discover.presentation.navigation.DiscoverRoute
 import ru.aloyaloya.gametracker.R
+import ru.aloyaloya.search.presentation.navigation.SearchRoute
+import ru.aloyaloya.settings.presentation.navigation.SettingsRoute
 import kotlin.reflect.KClass
 
-// TODO: Move all route resources, classes to feature modules
+// TODO: Move all route resources to feature modules
 
 /**
  * Enumeration representing the top-level navigation destinations in the Gametracker application.
@@ -29,48 +32,20 @@ enum class TopLevelDestination(
         iconResId = R.drawable.ic_discover_filled,
         labelResId = R.string.discover_screen_title,
         route = DiscoverRoute::class,
-        baseRoute = DiscoverBaseRoute::class,
     ),
     SEARCH(
         iconResId = R.drawable.ic_search_filled,
         labelResId = R.string.search_screen_title,
-        route = SearchRoute::class,
-        baseRoute = SearchBaseRoute::class,
+        route = SearchRoute::class
     ),
     COLLECTION(
         iconResId = R.drawable.ic_collection_filled,
         labelResId = R.string.collection_screen_title,
-        route = CollectionRoute::class,
-        baseRoute = CollectionBaseRoute::class,
+        route = CollectionRoute::class
     ),
     SETTINGS(
         iconResId = R.drawable.ic_settings_filled,
         labelResId = R.string.settings_screen_title,
-        route = SettingsRoute::class,
-        baseRoute = SettingsBaseRoute::class,
+        route = SettingsRoute::class
     ),
 }
-
-@Serializable
-data object DiscoverRoute
-
-@Serializable
-data object DiscoverBaseRoute
-
-@Serializable
-data object SearchRoute
-
-@Serializable
-data object SearchBaseRoute
-
-@Serializable
-data object CollectionRoute
-
-@Serializable
-data object CollectionBaseRoute
-
-@Serializable
-data object SettingsRoute
-
-@Serializable
-data object SettingsBaseRoute
