@@ -5,7 +5,7 @@ import dagger.Subcomponent
 
 @Subcomponent(
     modules = [
-        DiscoverModule::class
+        SettingsModule::class
     ]
 )
 interface SettingsComponent {
