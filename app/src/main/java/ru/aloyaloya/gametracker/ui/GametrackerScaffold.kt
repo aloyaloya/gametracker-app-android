@@ -1,15 +1,12 @@
 package ru.aloyaloya.gametracker.ui
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination
@@ -44,37 +41,28 @@ fun GametrackerScaffold(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit
 ) {
-    Box(
-        modifier = modifier
-            .fillMaxSize()
-            .background(
-                Brush.verticalGradient(
-                    0.0f to MaterialTheme.colorScheme.surfaceContainerLow, // 0%
-                    0.3f to MaterialTheme.colorScheme.surfaceContainerHigh, // 20%
-                    0.7f to MaterialTheme.colorScheme.surfaceContainer // 60%
-                )
-            )
-    ) {
-        Scaffold(
-            bottomBar = {
-                BottomNavigationBar {
-                    destinations.forEach { destination ->
-                        BottomNavigationBarItem(
-                            painter = painterResource(destination.iconResId),
-                            label = stringResource(destination.labelResId),
-                            selected = currentDestination.isRouteInHierarchy(destination.baseRoute),
-                            onClick = { onNavigate(destination) }
-                        )
-                    }
+    Scaffold(
+        modifier = modifier,
+        contentWindowInsets = WindowInsets(0, 0, 0, 0),
+        bottomBar = {
+            BottomNavigationBar {
+                destinations.forEach { destination ->
+                    BottomNavigationBarItem(
+                        painter = painterResource(destination.iconResId),
+                        label = stringResource(destination.labelResId),
+                        selected = currentDestination.isRouteInHierarchy(destination.baseRoute),
+                        onClick = { onNavigate(destination) }
+                    )
                 }
-            },
-
-            /** Make it transparent so that the Box gradient is visible */
-            containerColor = Color.Transparent
-        ) { innerPadding ->
-            Box(modifier = Modifier.padding(innerPadding)) {
-                content()
             }
+        }
+    ) { innerPadding ->
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+        ) {
+            content()
         }
     }
 }
