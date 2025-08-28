@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
@@ -18,13 +17,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import ru.aloyaloya.design_system.component.AsyncDynamicImage
-import ru.aloyaloya.design_system.component.card.FeatureCardDefaults.DEFAULT_CARD_HEIGHT
 import ru.aloyaloya.design_system.component.card.FeatureCardDefaults.DEFAULT_CARD_SHAPE
 import ru.aloyaloya.design_system.component.card.FeatureCardDefaults.DEFAULT_CHIP_PADDING
-import ru.aloyaloya.design_system.component.card.FeatureCardDefaults.DEFAULT_CONTENT_HORIZONTAL_PADDING
+import ru.aloyaloya.design_system.component.card.FeatureCardDefaults.DEFAULT_CONTENT_END_PADDING
 import ru.aloyaloya.design_system.component.card.FeatureCardDefaults.DEFAULT_CONTENT_ITEMS_SPACER
+import ru.aloyaloya.design_system.component.card.FeatureCardDefaults.DEFAULT_CONTENT_START_PADDING
 import ru.aloyaloya.design_system.component.card.FeatureCardDefaults.DEFAULT_CONTENT_VERTICAL_PADDING
 import ru.aloyaloya.design_system.component.card.FeatureCardDefaults.DEFAULT_TAGS_ITEMS_SPACER
 import ru.aloyaloya.design_system.component.card.FeatureCardDefaults.cardShadowGradient
@@ -65,7 +65,6 @@ fun GameFeatureCard(
             .dropShadow(shape = RoundedCornerShape(DEFAULT_CARD_SHAPE.dp))
             .clip(shape = RoundedCornerShape(DEFAULT_CARD_SHAPE.dp))
             .clickable { onClick() }
-            .height(DEFAULT_CARD_HEIGHT.dp)
     ) {
         AsyncDynamicImage(imageUrl = imageUrl)
         Box(
@@ -85,15 +84,18 @@ fun GameFeatureCard(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
+                .padding(vertical = DEFAULT_CONTENT_VERTICAL_PADDING.dp)
                 .padding(
-                    horizontal = DEFAULT_CONTENT_HORIZONTAL_PADDING.dp,
-                    vertical = DEFAULT_CONTENT_VERTICAL_PADDING.dp
+                    start = DEFAULT_CONTENT_START_PADDING.dp,
+                    end = DEFAULT_CONTENT_END_PADDING.dp
                 )
         ) {
             Text(
                 text = title,
                 style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.surfaceVariant
+                color = MaterialTheme.colorScheme.surfaceVariant,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
             )
             Row(horizontalArrangement = Arrangement.spacedBy(DEFAULT_TAGS_ITEMS_SPACER.dp)) {
                 tags.forEach { tag ->
@@ -116,9 +118,9 @@ fun GameFeatureCard(
  * for a larger, more prominent card layout compared to the standard version.
  */
 private object FeatureCardDefaults {
-    const val DEFAULT_CARD_HEIGHT = 240
     const val DEFAULT_CARD_SHAPE = 16
-    const val DEFAULT_CONTENT_HORIZONTAL_PADDING = 16
+    const val DEFAULT_CONTENT_START_PADDING = 16
+    const val DEFAULT_CONTENT_END_PADDING = 32
     const val DEFAULT_CONTENT_VERTICAL_PADDING = 24
     const val DEFAULT_CONTENT_ITEMS_SPACER = 4
     const val DEFAULT_CHIP_PADDING = 16
