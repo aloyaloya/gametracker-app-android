@@ -80,7 +80,7 @@ fun GameStandardCard(
                     end = DEFAULT_TITLE_END_PADDING.dp
                 ),
             text = title,
-            minLines = 2,
+            maxLines = 2,
             overflow = TextOverflow.Ellipsis,
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.surfaceVariant
@@ -95,8 +95,8 @@ fun GameStandardCard(
  * that ensures text readability on various background images.
  */
 private object StandardCardDefaults {
-    const val DEFAULT_CARD_HEIGHT = 160
-    const val DEFAULT_CARD_WIDTH = 120
+    const val DEFAULT_CARD_HEIGHT = 152
+    const val DEFAULT_CARD_WIDTH = 114
     const val DEFAULT_CARD_SHAPE = 16
     const val DEFAULT_TITLE_VERTICAL_PADDING = 8
     const val DEFAULT_TITLE_START_PADDING = 8
