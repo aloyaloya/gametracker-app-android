@@ -29,7 +29,6 @@ fun SectionHeader(
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
 
-
     val animatedColor by animateColorAsState(
         targetValue = if (isPressed) {
             MaterialTheme.colorScheme.onPrimaryContainer
@@ -47,7 +46,7 @@ fun SectionHeader(
     ) {
         Text(
             text = title,
-            style = MaterialTheme.typography.titleMedium,
+            style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.surfaceVariant
         )
         Text(
@@ -58,7 +57,7 @@ fun SectionHeader(
                     onClick = onShowMore
                 ),
             text = stringResource(R.string.show_more),
-            style = MaterialTheme.typography.titleSmall,
+            style = MaterialTheme.typography.bodyMedium,
             color = animatedColor
         )
     }
