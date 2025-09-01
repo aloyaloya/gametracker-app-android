@@ -1,10 +1,18 @@
 package ru.aloyaloya.discover.presentation.navigation
 
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import kotlinx.serialization.Serializable
+import ru.aloyaloya.discover.di.DiscoverComponent
+import ru.aloyaloya.discover.presentation.DiscoverRoute
+import ru.aloyaloya.discover.presentation.DiscoverViewModel
+import ru.aloyaloya.ui.di.ComponentProvider
 
 /**
  * Represents the navigation route to the Discover screen.
@@ -34,8 +42,25 @@ fun NavController.navigateToDiscover(navOptions: NavOptions) =
  * @receiver the NavGraphBuilder used to build the navigation graph
  */
 fun NavGraphBuilder.discoverScreen() {
-    composable<DiscoverRoute> {
+    composable<DiscoverRoute> { navBackStackEntry ->
 
+        val context = LocalContext.current.applicationContext
+
+        val factory = (context as ComponentProvider)
+            .provideComponent("discover", DiscoverComponent::class)
+            .viewModelFactory
+
+        val viewModel = viewModel<DiscoverViewModel>(
+            viewModelStoreOwner = navBackStackEntry,
+            factory = factory
+        )
+
+        val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+        DiscoverRoute(
+            uiState = uiState,
+            onEvent = {}
+        )
     }
 }
 
