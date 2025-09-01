@@ -12,7 +12,6 @@ import ru.aloyaloya.collection.presentation.navigation.navigateToCollection
 import ru.aloyaloya.discover.presentation.navigation.navigateToDiscover
 import ru.aloyaloya.gametracker.navigation.GametrackerNavHost
 import ru.aloyaloya.gametracker.navigation.TopLevelDestination
-import ru.aloyaloya.search.presentation.navigation.navigateToSearch
 import ru.aloyaloya.settings.presentation.navigation.navigateToSettings
 
 /**
@@ -67,7 +66,7 @@ private fun navigateToTopLevelDestination(
 
         when (topLevelDestination) {
             TopLevelDestination.DISCOVER -> navController.navigateToDiscover(topLevelNavOptions)
-            TopLevelDestination.SEARCH -> navController.navigateToSearch(topLevelNavOptions)
+//            TopLevelDestination.SEARCH -> navController.navigateToSearch(topLevelNavOptions)
             TopLevelDestination.COLLECTION -> navController.navigateToCollection(topLevelNavOptions)
             TopLevelDestination.SETTINGS -> navController.navigateToSettings(topLevelNavOptions)
         }

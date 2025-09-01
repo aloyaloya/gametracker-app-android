@@ -4,7 +4,6 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import ru.aloyaloya.collection.presentation.navigation.CollectionRoute
 import ru.aloyaloya.discover.presentation.navigation.DiscoverRoute
-import ru.aloyaloya.search.presentation.navigation.SearchRoute
 import ru.aloyaloya.settings.presentation.navigation.SettingsRoute
 import kotlin.reflect.KClass
 
@@ -30,11 +29,12 @@ enum class TopLevelDestination(
         labelResId = ru.aloyaloya.discover.R.string.discover_screen_title,
         route = DiscoverRoute::class,
     ),
-    SEARCH(
-        iconResId = ru.aloyaloya.search.R.drawable.ic_search_filled,
-        labelResId = ru.aloyaloya.search.R.string.search_screen_title,
-        route = SearchRoute::class
-    ),
+
+    //    SEARCH(
+//        iconResId = ru.aloyaloya.search.R.drawable.ic_search_filled,
+//        labelResId = ru.aloyaloya.search.R.string.search_screen_title,
+//        route = SearchRoute::class
+//    ),
     COLLECTION(
         iconResId = ru.aloyaloya.collection.R.drawable.ic_collection_filled,
         labelResId = ru.aloyaloya.collection.R.string.collection_screen_title,
