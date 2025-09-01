@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import ru.aloyaloya.design_system.component.StandardCardDefaults.DEFAULT_PRIMARY_BUTTON_HORIZONTAL_PADDING
 import ru.aloyaloya.design_system.component.StandardCardDefaults.DEFAULT_PRIMARY_BUTTON_SHAPE
 import ru.aloyaloya.design_system.component.StandardCardDefaults.DEFAULT_PRIMARY_BUTTON_VERTICAL_PADDING
+import ru.aloyaloya.design_system.extension.dropShadow
 
 /**
  * A customized primary button component with gradient background and consistent styling.
@@ -40,6 +41,7 @@ fun PrimaryButton(
     Button(
         onClick = onClick,
         modifier = modifier
+            .dropShadow(RoundedCornerShape(DEFAULT_PRIMARY_BUTTON_SHAPE.dp))
             .background(
                 shape = RoundedCornerShape(DEFAULT_PRIMARY_BUTTON_SHAPE.dp),
                 brush = Brush.linearGradient(
