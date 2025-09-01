@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="discover_screen_title">Каталог</string>
+
+    <string name="section_features">Популярные</string>
+    <string name="section_genres">Жанры</string>
+    <string name="section_new">Новые</string>
+    <string name="section_for_you">Для вас</string>
+
 </resources>
