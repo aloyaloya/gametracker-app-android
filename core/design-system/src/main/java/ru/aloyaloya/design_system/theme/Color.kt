@@ -4,7 +4,7 @@ import androidx.compose.ui.graphics.Color
 
 val Pink70 = Color(0xFFc61c8c)
 val Pink60 = Color(0xFFb913c8)
-val Pink30 = Color(0xFF651576)
+val Pink30 = Color(0xFF390B44)
 
 val Yellow50 = Color(0xFFFABE2B)
 

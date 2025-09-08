@@ -3,9 +3,8 @@ package ru.aloyaloya.design_system.component.card
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -18,14 +17,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import ru.aloyaloya.design_system.component.AsyncDynamicImage
-import ru.aloyaloya.design_system.component.card.StandardCardDefaults.DEFAULT_CARD_HEIGHT
-import ru.aloyaloya.design_system.component.card.StandardCardDefaults.DEFAULT_CARD_SHAPE
-import ru.aloyaloya.design_system.component.card.StandardCardDefaults.DEFAULT_CARD_WIDTH
-import ru.aloyaloya.design_system.component.card.StandardCardDefaults.DEFAULT_CHIP_PADDING
-import ru.aloyaloya.design_system.component.card.StandardCardDefaults.DEFAULT_TITLE_END_PADDING
-import ru.aloyaloya.design_system.component.card.StandardCardDefaults.DEFAULT_TITLE_START_PADDING
-import ru.aloyaloya.design_system.component.card.StandardCardDefaults.DEFAULT_TITLE_VERTICAL_PADDING
-import ru.aloyaloya.design_system.component.card.StandardCardDefaults.cardShadowGradient
 import ru.aloyaloya.design_system.extension.dropShadow
 import ru.aloyaloya.domain.model.GameStatus
 
@@ -52,35 +43,37 @@ fun GameStandardCard(
 ) {
     Box(
         modifier = modifier
-            .dropShadow(shape = RoundedCornerShape(DEFAULT_CARD_SHAPE.dp))
-            .clip(shape = RoundedCornerShape(DEFAULT_CARD_SHAPE.dp))
+            .dropShadow(shape = RoundedCornerShape(StandardCardDefaults.CARD_SHAPE.dp))
+            .clip(shape = RoundedCornerShape(StandardCardDefaults.CARD_SHAPE.dp))
             .clickable { onClick() }
-            .height(DEFAULT_CARD_HEIGHT.dp)
-            .width(DEFAULT_CARD_WIDTH.dp)
+            .aspectRatio(StandardCardDefaults.CARD_ASPECT_RATIO)
     ) {
         AsyncDynamicImage(imageUrl = imageUrl)
+
         Box(
             modifier = Modifier
                 .matchParentSize()
-                .background(cardShadowGradient)
+                .background(StandardCardDefaults.cardShadowGradient)
         )
+
         StatusChip(
             status = status,
             textVisible = false,
             modifier = Modifier
                 .align(Alignment.TopEnd)
-                .padding(DEFAULT_CHIP_PADDING.dp)
+                .padding(StandardCardDefaults.CHIP_PADDING.dp)
         )
+
         Text(
             modifier = Modifier
                 .align(Alignment.BottomStart)
-                .padding(vertical = DEFAULT_TITLE_VERTICAL_PADDING.dp)
+                .padding(vertical = StandardCardDefaults.TITLE_VERTICAL_PADDING.dp)
                 .padding(
-                    start = DEFAULT_TITLE_START_PADDING.dp,
-                    end = DEFAULT_TITLE_END_PADDING.dp
+                    start = StandardCardDefaults.TITLE_START_PADDING.dp,
+                    end = StandardCardDefaults.TITLE_END_PADDING.dp
                 ),
             text = title,
-            minLines = 2,
+            maxLines = 2,
             overflow = TextOverflow.Ellipsis,
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.surfaceVariant
@@ -94,14 +87,14 @@ fun GameStandardCard(
  * Contains constants for card size, shape, padding, and the gradient overlay
  * that ensures text readability on various background images.
  */
+
 private object StandardCardDefaults {
-    const val DEFAULT_CARD_HEIGHT = 160
-    const val DEFAULT_CARD_WIDTH = 120
-    const val DEFAULT_CARD_SHAPE = 16
-    const val DEFAULT_TITLE_VERTICAL_PADDING = 8
-    const val DEFAULT_TITLE_START_PADDING = 8
-    const val DEFAULT_TITLE_END_PADDING = 16
-    const val DEFAULT_CHIP_PADDING = 8
+    const val CARD_ASPECT_RATIO = 0.75f
+    const val CARD_SHAPE = 16
+    const val TITLE_VERTICAL_PADDING = 16
+    const val TITLE_START_PADDING = 8
+    const val TITLE_END_PADDING = 16
+    const val CHIP_PADDING = 8
 
     /**
      * Vertical gradient overlay applied to the card image to improve text contrast.
@@ -109,9 +102,9 @@ private object StandardCardDefaults {
      * to maintain image visibility.
      */
     val cardShadowGradient = Brush.verticalGradient(
-        0f to Color.Black.copy(alpha = 0.4f),
+        0f to Color.Black.copy(alpha = 0.6f),
         0.2f to Color.Transparent,
         0.4f to Color.Transparent,
-        1f to Color.Black.copy(alpha = 0.8f)
+        1f to Color.Black.copy(alpha = 0.7f)
     )
 }

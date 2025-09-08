@@ -41,6 +41,7 @@ android {
 dependencies {
 
     implementation(project(":core:domain"))
+    implementation(project(":core:design-system"))
     implementation(project(":core:ui"))
 
     implementation(libs.dagger)
