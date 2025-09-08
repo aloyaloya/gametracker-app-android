@@ -10,4 +10,9 @@ sealed class GamesFeed(
 ) {
     class New(games: List<Game>) : GamesFeed(R.string.section_new, games)
     class ForYou(games: List<Game>) : GamesFeed(R.string.section_for_you, games)
+    class ComingSoon(games: List<Game>) : GamesFeed(R.string.section_coming_soon, games)
+    class SimilarTo(
+        games: List<Game>,
+        val targetGame: String
+    ) : GamesFeed(R.string.section_similar_to, games)
 }

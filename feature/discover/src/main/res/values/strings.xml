@@ -6,5 +6,7 @@
     <string name="section_genres">Жанры</string>
     <string name="section_new">Новые</string>
     <string name="section_for_you">Для вас</string>
+    <string name="section_coming_soon">Скоро выйдет</string>
+    <string name="section_similar_to">Похожие на %s</string>
 
 </resources>
