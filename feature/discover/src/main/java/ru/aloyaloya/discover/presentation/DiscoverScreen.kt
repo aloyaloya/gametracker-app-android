@@ -55,13 +55,13 @@ private fun DiscoverScreen(
     val sheetState = rememberDraggableSheetState(headerHeight = 360.dp)
     val progress = sheetState.progress
 
-    val topColor by animateColorAsState(
+    val bottomColor by animateColorAsState(
         targetValue = lerp(
             MaterialTheme.colorScheme.surfaceContainerHigh,
             MaterialTheme.colorScheme.onPrimaryContainer,
             1f - progress
         ),
-        label = "TopGradientColor"
+        label = "BottomGradientColor"
     )
 
     Column(
@@ -69,14 +69,13 @@ private fun DiscoverScreen(
             .background(
                 Brush.verticalGradient(
                     0f to MaterialTheme.colorScheme.surface,
-                    1f to topColor
+                    1f to bottomColor
                 )
             )
             .statusBarsPadding()
     ) {
         TopAppBar(
             title = stringResource(R.string.discover_screen_title),
-            isVisible = uiState is DiscoverUiState.Success,
             rightAction = TopBarAction(
                 iconResId = R.drawable.ic_search_outline,
                 descriptionResId = R.string.discover_screen_title,
@@ -130,14 +129,14 @@ private fun DiscoverContent(
                 PrimaryButton(
                     text = "Помочь с выбором",
                     onClick = {},
-                    modifier = modifier
+                    modifier = Modifier
                         .padding(horizontal = 24.dp)
                         .fillMaxWidth()
                 )
             }
         },
         sheetContent = {
-            content.gamesFeed.forEach { section ->
+            content.gamesFeed.take(2).forEach { section ->
                 item(key = section::class.simpleName) {
                     DiscoverFeedSection(
                         feed = stringResource(section.titleRes),
@@ -154,6 +153,17 @@ private fun DiscoverContent(
                     onShowMore = { /* TODO */ },
                     onGenreClick = onGenreClick
                 )
+            }
+
+            content.gamesFeed.subList(2, content.gamesFeed.size).forEach { section ->
+                item(key = section::class.simpleName) {
+                    DiscoverFeedSection(
+                        feed = stringResource(section.titleRes),
+                        games = section.games,
+                        onShowMore = { /* TODO */ },
+                        onGameClick = onGameClick
+                    )
+                }
             }
         }
     )
@@ -178,20 +188,13 @@ private fun DiscoverFeatureSection(
     }
 }
 
-/**
- * A composable section that displays a horizontal list of genre cards.
- *
- * @param genres the list of [Genre] objects to display
- * @param onShowMore callback invoked when the "Show More" action is triggered
- * @param onGenreClick callback invoked when a genre card is clicked, providing the genre ID
- * @param modifier optional [Modifier] to apply to the section container
- */
 @Composable
 private fun DiscoverGenreSection(
     genres: List<Genre>,
     onShowMore: () -> Unit,
-    onGenreClick: (Int) -> Unit,
-    modifier: Modifier = Modifier
+    onGenreClick: (Int) -> Unit, // TODO: Change to real ID
+    modifier: Modifier = Modifier,
+    cardsPerPage: Int = 2
 ) {
     SectionContainer(
         title = stringResource(R.string.section_genres),
@@ -200,20 +203,15 @@ private fun DiscoverGenreSection(
     ) {
         HorizontalGridPager(
             items = genres,
-            itemsPerPage = DiscoverGenreDefaults.CARDS_PER_PAGE
+            itemsPerPage = cardsPerPage
         ) { genre, cardModifier ->
             GenreCard(
                 title = genre.title,
-                imageUrl = genre.imageUrl,
-                onClick = { /* TODO */ },
+                onClick = { onGenreClick(genre.id) },
                 modifier = cardModifier
             )
         }
     }
-}
-
-private object DiscoverGenreDefaults {
-    const val CARDS_PER_PAGE = 2
 }
 
 @Composable
@@ -222,7 +220,8 @@ private fun DiscoverFeedSection(
     games: List<Game>,
     onShowMore: () -> Unit,
     onGameClick: (Int) -> Unit, // TODO: Change to real ID
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    cardsPerPage: Int = 3
 ) {
     SectionContainer(
         title = feed,
@@ -231,7 +230,7 @@ private fun DiscoverFeedSection(
     ) {
         HorizontalGridPager(
             items = games,
-            itemsPerPage = DiscoverFeedDefaults.CARDS_PER_PAGE
+            itemsPerPage = cardsPerPage
         ) { game, cardModifier ->
             GameStandardCard(
                 title = game.title,
@@ -244,6 +243,3 @@ private fun DiscoverFeedSection(
     }
 }
 
-private object DiscoverFeedDefaults {
-    const val CARDS_PER_PAGE = 3
-}

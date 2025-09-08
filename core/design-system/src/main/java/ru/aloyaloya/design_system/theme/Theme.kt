@@ -17,6 +17,7 @@ private val LightColorScheme = lightColorScheme(
     surfaceContainer = Purple30,
     surfaceContainerHigh = Purple40,
     surfaceContainerLow = Purple20,
+    surfaceDim = Purple50,
     surface = Purple10,
     surfaceVariant = White70,
     surfaceBright = White20,
