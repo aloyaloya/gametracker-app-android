@@ -102,9 +102,9 @@ private object StandardCardDefaults {
      * to maintain image visibility.
      */
     val cardShadowGradient = Brush.verticalGradient(
-        0f to Color.Black.copy(alpha = 0.4f),
+        0f to Color.Black.copy(alpha = 0.6f),
         0.2f to Color.Transparent,
         0.4f to Color.Transparent,
-        1f to Color.Black.copy(alpha = 0.8f)
+        1f to Color.Black.copy(alpha = 0.7f)
     )
 }
