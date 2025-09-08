@@ -2,8 +2,6 @@ package ru.aloyaloya.design_system.component.navigation
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.Crossfade
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
 import androidx.compose.foundation.layout.Box
@@ -29,63 +27,56 @@ import ru.aloyaloya.ui.model.TopBarAction
 @Composable
 fun TopAppBar(
     title: String,
-    isVisible: Boolean,
     modifier: Modifier = Modifier,
     leftAction: TopBarAction? = null,
     rightAction: TopBarAction? = null
 ) {
-    AnimatedVisibility(
-        visible = isVisible,
-        enter = fadeIn(),
-        exit = fadeOut()
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp)
+            .padding(
+                top = 0.dp,
+                bottom = 24.dp
+            ),
+        contentAlignment = Alignment.Center
     ) {
-        Box(
-            modifier = modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp)
-                .padding(
-                    top = 8.dp,
-                    bottom = 24.dp
-                ),
-            contentAlignment = Alignment.Center
+        AnimatedVisibility(
+            visible = leftAction != null,
+            enter = scaleIn(),
+            exit = scaleOut(),
+            modifier = Modifier.align(Alignment.CenterStart)
         ) {
-            AnimatedVisibility(
-                visible = leftAction != null,
-                enter = scaleIn(),
-                exit = scaleOut(),
-                modifier = Modifier.align(Alignment.CenterStart)
-            ) {
-                leftAction?.let { action ->
-                    ActionButton(
-                        onClick = { action.actionUnit.invoke() },
-                        iconRes = action.iconResId,
-                        stringRes = action.descriptionResId,
-                        filled = action.actionFilled
-                    )
-                }
+            leftAction?.let { action ->
+                ActionButton(
+                    onClick = { action.actionUnit.invoke() },
+                    iconRes = action.iconResId,
+                    stringRes = action.descriptionResId,
+                    filled = action.actionFilled
+                )
             }
+        }
 
-            Text(
-                text = title,
-                style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.surfaceVariant,
-                modifier = Modifier.align(Alignment.Center)
-            )
+        Text(
+            text = title,
+            style = MaterialTheme.typography.titleLarge,
+            color = MaterialTheme.colorScheme.surfaceVariant,
+            modifier = Modifier.align(Alignment.Center)
+        )
 
-            AnimatedVisibility(
-                visible = rightAction != null,
-                enter = scaleIn(),
-                exit = scaleOut(),
-                modifier = Modifier.align(Alignment.CenterEnd)
-            ) {
-                rightAction?.let { action ->
-                    ActionButton(
-                        onClick = { action.actionUnit.invoke() },
-                        iconRes = action.iconResId,
-                        stringRes = action.descriptionResId,
-                        filled = action.actionFilled
-                    )
-                }
+        AnimatedVisibility(
+            visible = rightAction != null,
+            enter = scaleIn(),
+            exit = scaleOut(),
+            modifier = Modifier.align(Alignment.CenterEnd)
+        ) {
+            rightAction?.let { action ->
+                ActionButton(
+                    onClick = { action.actionUnit.invoke() },
+                    iconRes = action.iconResId,
+                    stringRes = action.descriptionResId,
+                    filled = action.actionFilled
+                )
             }
         }
     }
